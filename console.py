@@ -10,6 +10,7 @@ from models.state import State
 from models.city import City
 from models.amenity import Amenity
 from models.review import Review
+import re
 
 
 class HBNBCommand(cmd.Cmd):
@@ -118,13 +119,27 @@ class HBNBCommand(cmd.Cmd):
         if not args:
             print("** class name missing **")
             return
-        elif args not in HBNBCommand.classes:
+
+        arg_list = args.split(" ")
+        if arg_list[0] not in HBNBCommand.classes:
             print("** class doesn't exist **")
             return
-        new_instance = HBNBCommand.classes[args]()
-        storage.save()
+
+        new_instance = HBNBCommand.classes[arg_list[0]]()
+
+        if len(arg_list) >= 2:
+            arg_list.pop(0)
+            for param in arg_list:
+                if re.search(r'^.*?=.*?$', param):
+                    param = param.split("=")
+                    if re.search(r'^"(.*?)"$', param[1]):
+                        param[1] = param[1].strip('"')
+                        param[1] = param[1].replace("_", " ")
+                        setattr(new_instance, param[0], str(param[1]))
+                    else:
+                        setattr(new_instance, param[0], eval(param[1]))
+        new_instance.save()
         print(new_instance.id)
-        storage.save()
 
     def help_create(self):
         """ Help information for the create method """
