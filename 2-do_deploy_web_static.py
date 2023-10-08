@@ -1,4 +1,4 @@
-#!/usr/bin/pythoin3
+#!/usr/bin/python3
 """
 Fabric script that distributes an archive to your web servers
 """
