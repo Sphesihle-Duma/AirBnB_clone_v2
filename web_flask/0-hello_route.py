@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/usr/bin/python3
 """ A script that create simple flask app """
 from flask import Flask
 
