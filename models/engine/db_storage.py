@@ -93,3 +93,7 @@ class DBStorage:
         Closes Session
         """
         self.__session.close()
+
+    def close(self):
+        """ calls remove() """
+        self.__session.close()
