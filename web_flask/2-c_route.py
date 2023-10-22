@@ -2,6 +2,9 @@
 """ Creates a flask app that handles three route """
 
 
+app = Flask(__name__)
+
+
 @app.route('/', strict_slashes=False)
 def hello_hbnb():
     """ Returns Hello HBNB """
