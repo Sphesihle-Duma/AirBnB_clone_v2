@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """ Creates a flask app that handles three route """
-from flask import Flash
+from flask import Flask
 
 app = Flask(__name__)
 
