@@ -27,9 +27,7 @@ def c_text(text):
 @app.route('python/<text>', strict_slashes=True)
 def python_is_cool(text='is cool'):
     """ takes the text and process it """
-    if text is not 'is cool':
-        text = text.replace('_', ' ')
-    return 'Python %s' % text
+    return f"Python {text.replace('_'), ' '}"
 
 
 if __name__ == '__main__':
